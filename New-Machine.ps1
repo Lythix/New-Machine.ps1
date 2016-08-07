@@ -16,13 +16,41 @@ if (-not (Test-Path $PROFILE)) {
     New-Item $PROFILE -Force
 }
 
-Write-Progress -Activity "Ensuring Chocolatey is available"
-$null = Get-PackageProvider -Name chocolatey
-
-Write-Progress -Activity "Ensuring Chocolatey is trusted"
-if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
-    Set-PackageSource -Name chocolatey -Trusted
+if ($env:Path.Contains("chocolatey"))
+{
+    "Choco already installed"
 }
+else
+{
+    "Installing Choco"
+    iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+
+$ExistingChocoPackages = (& choco list -localonly) | % { $_.Split(' ')[0] }
+function Install-ChocoIfNotAlready($name) {
+    if ($ExistingChocoPackages -contains $name)
+    {
+        "$name already installed"
+        #$result = & choco install $name -y -force
+      #   $result = choco install $name -y -force
+    }
+    else
+    {
+        "Installing $name"
+        #$result = & choco install $name -y
+        $result = choco install $name -y 
+    }
+}
+
+
+
+#Write-Progress -Activity "Ensuring Chocolatey is available"
+#$null = Get-PackageProvider -Name chocolatey
+
+#Write-Progress -Activity "Ensuring Chocolatey is trusted"
+#if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
+#    Set-PackageSource -Name chocolatey -Trusted
+#}
 
 @(
     "google-chrome-x64",
@@ -34,6 +62,7 @@ if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
     "visualstudiocode",
     "git",
     "beyondcompare",
+    "resharper",
     "resharper-platform",
     "filezilla",
     "teamviewer",
@@ -71,8 +100,16 @@ if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
     "snagit"   
     
 ) | % {
-    Write-Progress -Activity "Installing $_"
-    Install-Package -Name $_ -ProviderName chocolatey
+    $checkPackage = Find-Package $_
+    if ($checkPackage.Name -eq $_)
+    {
+        Write-Progress -Activity "Installing $_"
+#        $result = Install-Package -Name $_ -ProviderName chocolatey
+        # $result = choco install $_ -y -force
+        Install-ChocoIfNotAlready $_
+
+        $result | Format-List
+    }
 }
     
 #$OneDriveRoot = (gi HKCU:\Software\Microsoft\Windows\CurrentVersion\SkyDrive).GetValue('UserFolder')
