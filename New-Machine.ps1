@@ -54,55 +54,54 @@ function Install-ChocoIfNotAlready($name) {
 #    "google-chrome-x64",
 #  "git.install",
 #    "SublimeText3",
- 
+#    "resharper",
+#    "resharper-platform",
+#    "skype",
+#    "baretail",
+ #    "speccy",
+#    "f.lux",
+#    "vmwareworkstation",
+#    "geforce-experience",
+ #   "nodejs.install",
+ #   "Jump-Location",
+  #   "snagit"  
+  
 @(
-    "skype",
     "conemu",
     "visualstudiocode",
     "git",
     "beyondcompare",
-#    "resharper",
-#    "resharper-platform",
     "filezilla",
     "teamviewer",
+    "skype",
     "7zip.install",
     "sourcetree",
     "tortoisegit",
     "Git-Credential-Manager-for-Windows",
     "vlc",
-#    "skype",
     "sysinternals",
     "nodejs",
     "dropbox",
     "googledrive",
     "malwarebytes",
-#    "baretail",
     "linqpad",
     "spotify",
     "treesizefree",
-#    "speccy",
-#    "f.lux",
     "lockhunter",
     "rufus",
-#    "vmwareworkstation",
     "crystaldiskmark",
     "chutzpah",
     "crashplan",
-#    "geforce-experience",
     "typescript",
     "adobe-creative-cloud",
     "snagit",
     "github",
- #   "nodejs.install",
- #   "Jump-Location",
-    "slack",
- #   "snagit"   
-    
+    "slack"
 ) | % {
-    $checkPackage = Find-Package $_
-    if ($checkPackage.Name -eq $_)
+  #  $checkPackage = Find-Package $_
+  #  if ($checkPackage.Name -eq $_)
     {
-        Write-Progress -Activity "Installing $_"
+       # Write-Progress -Activity "Installing $_"
 #        $result = Install-Package -Name $_ -ProviderName chocolatey
         # $result = choco install $_ -y -force
         Install-ChocoIfNotAlready $_
