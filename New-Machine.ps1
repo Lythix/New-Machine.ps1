@@ -8,10 +8,10 @@ if (-not $IsAdmin) {
     throw "You need to run this script elevated"
 }
 
-Write-Progress -Activity "Setting exeuction policy"
+# Write-Progress -Activity "Setting exeuction policy"
 Set-ExecutionPolicy RemoteSigned
 
-Write-Progress -Activity "Ensuring PS profile exists"
+# Write-Progress -Activity "Ensuring PS profile exists"
 if (-not (Test-Path $PROFILE)) {
     New-Item $PROFILE -Force
 }
@@ -37,12 +37,12 @@ function Install-ChocoIfNotAlready($name) {
     else
     {
         "Installing $name"
-        #$result = & choco install $name -y
         $result = choco install $name -y 
     }
 }
 
-
+      #$result = & choco install $name -y
+  
 
 #Write-Progress -Activity "Ensuring Chocolatey is available"
 #$null = Get-PackageProvider -Name chocolatey
