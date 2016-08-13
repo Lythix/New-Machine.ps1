@@ -98,17 +98,16 @@ function Install-ChocoIfNotAlready($name) {
     "github",
     "slack"
 ) | % {
-  #  $checkPackage = Find-Package $_
+        Install-ChocoIfNotAlready $_
+        $result | Format-List
+}
+    
+     #  $checkPackage = Find-Package $_
   #  if ($checkPackage.Name -eq $_)
-    {
+#    {
        # Write-Progress -Activity "Installing $_"
 #        $result = Install-Package -Name $_ -ProviderName chocolatey
         # $result = choco install $_ -y -force
-        Install-ChocoIfNotAlready $_
-
-        $result | Format-List
-    }
-}
     
 #$OneDriveRoot = (gi HKCU:\Software\Microsoft\Windows\CurrentVersion\SkyDrive).GetValue('UserFolder')
 #if (-not (Test-Path $OneDriveRoot))
