@@ -53,7 +53,7 @@ function Install-ChocoIfNotAlready($name) {
 #}
 
 @(
-    "google-chrome-x64",
+#    "google-chrome-x64",
     "git.install",
     "SublimeText3",
     "skype",
