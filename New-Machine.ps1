@@ -51,9 +51,9 @@ function Install-ChocoIfNotAlready($name) {
 #if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
 #    Set-PackageSource -Name chocolatey -Trusted
 #}
+#    "google-chrome-x64",
 
 @(
-#    "google-chrome-x64",
     "git.install",
     "SublimeText3",
     "skype",
