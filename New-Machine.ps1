@@ -99,9 +99,9 @@ function Install-ChocoIfNotAlready($name) {
     "slack"
 ) | % {
         Install-ChocoIfNotAlready $_
-        $result | Format-List
 }
     
+    # $result | Format-List
      #  $checkPackage = Find-Package $_
   #  if ($checkPackage.Name -eq $_)
 #    {
