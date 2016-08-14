@@ -31,13 +31,15 @@ function Install-ChocoIfNotAlready($name) {
     if ($ExistingChocoPackages -contains $name)
     {
         "$name already installed"
+        choco update $name -y
         #$result = & choco install $name -y -force
       #   $result = choco install $name -y -force
     }
     else
     {
         "Installing $name"
-        $result = choco install $name -y 
+        choco install $name -y
+        #$result = choco install $name -y 
     }
 }
 
