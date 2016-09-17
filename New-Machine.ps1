@@ -11,6 +11,8 @@ if (-not $IsAdmin) {
 # Write-Progress -Activity "Setting exeuction policy"
 Set-ExecutionPolicy RemoteSigned
 
+choco list --localonly
+
 # Write-Progress -Activity "Ensuring PS profile exists"
 if (-not (Test-Path $PROFILE)) {
     New-Item $PROFILE -Force
