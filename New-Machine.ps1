@@ -44,7 +44,7 @@ if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
     "googledrive",
     "malwarebytes",
     "linqpad",
-    "spotify",
+#    "spotify",
     "treesizefree",
     "lockhunter",
     "rufus",
