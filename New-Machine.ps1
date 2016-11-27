@@ -30,7 +30,7 @@ if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
     "conemu",
     "visualstudiocode",
     "beyondcompare",
-    "filezilla",
+#    "filezilla",
     "teamviewer",
     "skype",
     "7zip.install",
