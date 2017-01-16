@@ -54,7 +54,8 @@ if (-not ((Get-PackageSource -Name chocolatey).IsTrusted)) {
     "adobe-creative-cloud",
     "snagit",
     "github",
-    "slack"
+    "slack",
+    "agentransack"
     
 ) | % {
     Write-Progress -Activity "Installing $_"
